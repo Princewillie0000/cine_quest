@@ -7,13 +7,18 @@ const TVShowCard = ({ show, onPress }) => {
     <TouchableOpacity onPress={onPress} style={styles.cardContainer}>
       <View style={styles.shadowContainer}>
         <Card style={styles.card}>
-          <Card.Cover source={{ uri: show.poster_path }} style={styles.cover} />
+          <Card.Cover
+            source={{
+              uri: `https://image.tmdb.org/t/p/w500${show.poster_path}`,
+            }}
+            style={styles.cover}
+          />
           <Card.Content style={styles.content}>
             <Text variant="titleMedium" style={styles.title}>
-              {show.title}
+              {show.title || show.name}
             </Text>
             <Text variant="bodyMedium" style={styles.paragraph}>
-              Rating:{show.vote_average}
+              Rating: {show.vote_average}
             </Text>
           </Card.Content>
         </Card>
@@ -33,7 +38,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   card: {
-    // flex: 1,
+    flex: 1,
     borderRadius: 8,
     width: 150,
     height: 300,
@@ -51,7 +56,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   paragraph: {
-    fontSize: 14,
+    fontSize: 15,
     textAlign: "center",
     color: "grey",
   },

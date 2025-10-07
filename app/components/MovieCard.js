@@ -8,15 +8,17 @@ const MovieCard = ({ movie, onPress }) => {
       <View style={styles.shadowContainer}>
         <Card style={styles.card}>
           <Card.Cover
-            source={{ uri: movie.poster_path }}
+            source={{
+              uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            }}
             style={styles.cover}
           />
           <Card.Content style={styles.content}>
             <Text variant="titleMedium" style={styles.title}>
-              {movie.title}
+              {movie.title || movie.name}
             </Text>
             <Text variant="bodyMedium" style={styles.paragraph}>
-              Rating:{movie.vote_average}
+              Rating: {movie.vote_average}
             </Text>
           </Card.Content>
         </Card>
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   card: {
-    // flex: 1,
+    flex: 1,
     borderRadius: 8,
     width: 150,
     height: 300,
@@ -46,15 +48,15 @@ const styles = StyleSheet.create({
     height: 200,
   },
   content: {
-    paddingVertical: 8,
+    paddingVertical: 1,
   },
   title: {
     fontSize: 16,
     textAlign: "center",
-    fontWeight: "bold",
+    fontWeight: "800",
   },
   paragraph: {
-    fontSize: 14,
+    fontSize: 15,
     textAlign: "center",
     color: "grey",
   },
