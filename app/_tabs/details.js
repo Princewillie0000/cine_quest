@@ -33,28 +33,6 @@ const Details = () => {
 
   const { watched, setWatched, toWatch, setToWatch } = useUser();
 
-  const handleMarkAsToWatch = async () => {
-    if (details) {
-      const newToWatch = [...toWatch, details];
-      setToWatch(newToWatch);
-
-      // save to AsyncStorage
-      await AsyncStorage.setItem("toWatch", JSON.stringify(newToWatch));
-      console.log("added to Marked as to watch");
-    }
-  };
-
-  const handleMarkAsWatched = async () => {
-    if (details) {
-      const newWatched = [...watched, details];
-      setWatched(newWatched);
-
-      // save to AsyncStorage
-      await AsyncStorage.setItem("watched", JSON.stringify(newWatched));
-
-      console.log(`${details.name || details.title} added to watched list`);
-    }
-  };
   useEffect(() => {
     const loadDetails = async () => {
       try {
@@ -69,8 +47,8 @@ const Details = () => {
           setSimilar(similarMovies);
         } else if (tvShowId) {
           const tvShowDetails = await fetchShowDetails(tvShowId);
-
           setDetails(tvShowDetails);
+
           const tvShowTrailerId = await fetchShowTrailer(tvShowId);
           setTrailerId(tvShowTrailerId);
 
@@ -87,8 +65,38 @@ const Details = () => {
     loadDetails();
   }, [movieId, tvShowId]);
 
+  const handleMarkAsToWatch = async () => {
+    if (details) {
+      const newToWatch = [...toWatch, details];
+      setToWatch(newToWatch);
+      // save to AsyncStorage
+      await AsyncStorage.setItem("toWatch", JSON.stringify(newToWatch));
+    }
+    console.log(
+      `${details.title || details.name} added to Mark as to watch list`
+    );
+  };
+
+  const handleMarkAsWatched = async () => {
+    if (details) {
+      const newWatched = [...watched, details];
+      setWatched(newWatched);
+      // save to AsyncStorage
+      await AsyncStorage.setItem("watched", JSON.stringify(newWatched));
+      console.log(`${details.title || details.name} added to watched list`);
+    }
+  };
+
   if (loading) {
-    return <ActivityIndicator size="large" style={styles.loadingIndicator} />;
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator
+          size="large"
+          color="0000ff"
+          style={styles.loadingIndicator}
+        />
+      </View>
+    );
   }
 
   if (!details) {
@@ -172,7 +180,7 @@ const Details = () => {
 
         <Carousel
           data={similar}
-          renderItem={(item) =>
+          renderItem={({ item }) =>
             movieId ? (
               <MovieCard
                 movie={item}

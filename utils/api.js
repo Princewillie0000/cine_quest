@@ -29,7 +29,7 @@ export const fetchPopularMovies = async () => {
   }
 };
 
-// fetching popular tvshows
+// fetching popular tvShows
 export const fetchPopularTVShows = async () => {
   try {
     const response = await api.get("tv/popular");
@@ -81,6 +81,7 @@ export const fetchShowDetails = async (tvShowId) => {
         append_to_response: "videos",
       },
     });
+    console.log("✅ API Response (TV):", response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching show details", error);
@@ -135,14 +136,19 @@ export const fetchShowTrailer = async (tvShowId) => {
 
 export const fetchSimilarMovies = async (movieId) => {
   try {
-    const response = await axios.get(`${BASE_URL}/movie${movieId}/similar`, {
+    const response = await axios.get(`${BASE_URL}/movie/${movieId}/similar`, {
       params: {
         api_key: API_KEY,
       },
     });
     return response.data.results;
   } catch (error) {
-    console.log("Error fetching similar videos", error);
+    // console.log("Error fetching similar videos", error);
+    console.error(
+      "Error fetching similar videos:",
+      error.response?.data || error.message
+    );
+
     return [];
   }
 };
