@@ -11,9 +11,9 @@ import { store } from "expo-router/build/global-state/router-store";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [username, setUsername] = useState([]);
-  const [watched, setWatched] = useState(null);
-  const [toWatch, setToWatch] = useState(null);
+  const [username, setUsername] = useState("User");
+  const [watched, setWatched] = useState([]);
+  const [toWatch, setToWatch] = useState([]);
 
   useEffect(() => {
     const loadData = async () => {
