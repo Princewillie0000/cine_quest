@@ -19,6 +19,21 @@ const api = axios.create({
   },
 });
 
+export const fetchSearchResults = async (query) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/search/multi`, {
+      params: {
+        api_key: API_KEY,
+        query: query,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching search results: ", error);
+    throw error;
+  }
+};
+
 export const fetchPopularMovies = async () => {
   try {
     const response = await api.get("/movie/popular");

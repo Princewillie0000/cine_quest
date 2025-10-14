@@ -15,6 +15,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
 const UserScreen = () => {
+  const router = useRouter();
+
   const { username, updateUsername, watched, setWatched, toWatch, setToWatch } =
     useUser();
   const [isEditing, setIsEditing] = useState(false);
@@ -145,6 +147,7 @@ const UserScreen = () => {
 const styles = StyleSheet.create({
   username: {
     fontSize: 35,
+    marginLeft: 35,
     fontWeight: "bold",
     marginRight: 8,
   },
@@ -157,6 +160,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+  section: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginVertical: 16,
+    textAlign: "center",
+  },
+
   sectionTitle: {
     fontSize: 8,
     fontWeight: "bold",
@@ -165,7 +175,7 @@ const styles = StyleSheet.create({
 
   noItemsText: {
     fontSize: 16,
-    marginTop: 16,
+    marginTop: 30,
     textAlign: "center",
   },
 
