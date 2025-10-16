@@ -3,13 +3,16 @@ import { Card, Text } from "react-native-paper";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 const TVShowCard = ({ show, onPress }) => {
+  if (!show) return null;
   return (
     <TouchableOpacity onPress={onPress} style={styles.cardContainer}>
       <View style={styles.shadowContainer}>
         <Card style={styles.card}>
           <Card.Cover
             source={{
-              uri: `https://image.tmdb.org/t/p/w500${show.poster_path}`,
+              uri: show.poster_path
+                ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
+                : "https://via.placeholder.com/300x450?text=No+Image",
             }}
             style={styles.cover}
           />

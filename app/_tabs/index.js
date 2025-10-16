@@ -35,6 +35,7 @@ const Home = () => {
   }, []);
 
   const handleQueryChange = async (query) => {
+    setSearchQuery(query);
     if (query.length > 0) {
       try {
         const searchResults = await fetchSearchResults(query);
@@ -58,7 +59,7 @@ const Home = () => {
   const renderMovieItem = ({ item }) => (
     <MovieCard
       movie={item}
-      onPress={() => router.push(`/details?movieId=${item.id}.toString()`)}
+      onPress={() => router.push(`/details?movieId=${item.id}`)}
     />
   );
 
@@ -83,7 +84,7 @@ const Home = () => {
         data={popularMovies}
         renderItem={renderMovieItem}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.contentContainer}
+        // contentContainerStyle={styles.contentContainer}
       />
 
       <Text style={styles.sectionText}>Popular TV Shows</Text>
@@ -105,18 +106,18 @@ const styles = StyleSheet.create({
     padding: 16,
   },
 
-  contentContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 12,
-  },
+  // contentContainer: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   paddingHorizontal: 12,
+  // },
 
   sectionText: {
     fontSize: 20,
     fontWeight: 600,
     textAlign: "left",
-    marginBottom: 10,
+    marginBottom: 20,
     marginTop: 20,
   },
 

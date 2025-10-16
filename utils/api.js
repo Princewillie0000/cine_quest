@@ -27,6 +27,7 @@ export const fetchSearchResults = async (query) => {
         query: query,
       },
     });
+    console.log("🔍 Raw search results:", response.data.results);
     return response.data.results;
   } catch (error) {
     console.error("Error fetching search results: ", error);

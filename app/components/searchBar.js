@@ -15,18 +15,18 @@ const SearchBar = ({ query, onQueryChange, onQuerySubmit, suggestions }) => {
 
       {suggestions.length > 0 && (
         <View style={styles.suggestionsContainer}>
-          {suggestions.map((suggestions, index) => {
+          {suggestions.map((suggestion, index) => (
             <List.Item
               key={index}
-              title={suggestions.title || suggestions.name}
+              title={suggestion.title || suggestion.name}
               onPress={() =>
                 onQuerySubmit({
-                  nativeEvent: { text: suggestions.title || suggestions.name },
+                  nativeEvent: { text: suggestion.title || suggestion.name },
                 })
               }
-              style={styles.suggestionsContainer}
-            />;
-          })}
+              style={styles.suggestionItem}
+            />
+          ))}
         </View>
       )}
     </View>

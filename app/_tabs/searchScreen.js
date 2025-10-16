@@ -18,13 +18,13 @@ const searchScreen = () => {
   const [itemType, setItemType] = useState(null); // "movie" or "tv"
 
   useEffect(() => {
-    const searchMoviesOrShows = async (query) => {
+    const searchMoviesOrShows = async () => {
       try {
         const results = await fetchSearchResults(query);
         setSearchResults(results);
 
         if (results.length > 0) {
-          const firstItem = firstItem[0];
+          const firstItem = results[0];
           const isMovie = !!firstItem.title;
 
           setItemType(isMovie ? "movie" : "tv");
