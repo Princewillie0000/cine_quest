@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
 import Carousel from "../components/Carousel.js";
-import { Dimensions } from "react-native";
 import MovieCard from "../components/MovieCard.js";
 import TVShowCard from "../components/TVShowCard.js";
 import {
@@ -11,6 +10,7 @@ import {
 } from "../../utils/api.js";
 import { useRouter } from "expo-router";
 import SearchBar from "../components/searchBar.js";
+import { useTheme } from "../../context/ThemeContext.js";
 
 const Home = () => {
   const router = useRouter();

@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import {
   fetchMovieDetails,
   fetchShowDetails,
@@ -18,13 +18,15 @@ import {
 } from "../../utils/api";
 import { WebView } from "react-native-webview";
 import MovieCard from "../components/MovieCard";
-import TVShows from "../components/TVShowCard";
+import { useRouter } from "expo-router";
 import Carousel from "../components/Carousel";
 import TVShowCard from "../components/TVShowCard";
 import { useUser } from "../../context/UserContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Details = () => {
+  const router = useRouter();
+
   const { movieId, tvShowId } = useLocalSearchParams();
   const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -184,12 +186,12 @@ const Details = () => {
             movieId ? (
               <MovieCard
                 movie={item}
-                onPress={() => router.push(`/detail?movieId=${item.id}`)}
+                onPress={() => router.push(`/details?movieId=${item.id}`)}
               />
             ) : (
               <TVShowCard
                 show={item}
-                onPress={() => router.push(`/detail?tvShowId=${item.id}`)}
+                onPress={() => router.push(`/details?tvShowId=${item.id}`)}
               />
             )
           }

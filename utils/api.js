@@ -161,7 +161,7 @@ export const fetchSimilarMovies = async (movieId) => {
   } catch (error) {
     // console.log("Error fetching similar videos", error);
     console.error(
-      "Error fetching similar videos:",
+      "Error fetching similar movies:",
       error.response?.data || error.message
     );
 
