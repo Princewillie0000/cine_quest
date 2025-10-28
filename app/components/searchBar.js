@@ -1,8 +1,10 @@
 import React from "react";
 import { Searchbar, List } from "react-native-paper";
 import { View, StyleSheet } from "react-native";
+import { useTheme } from "../../context/ThemeContext";
 
 const SearchBar = ({ query, onQueryChange, onQuerySubmit, suggestions }) => {
+  const { theme } = useTheme();
   return (
     <View>
       <Searchbar
@@ -10,7 +12,10 @@ const SearchBar = ({ query, onQueryChange, onQuerySubmit, suggestions }) => {
         value={query}
         onChangeText={onQueryChange}
         onSubmitEditing={onQuerySubmit}
-        style={styles.searchBar}
+        style={[
+          styles.searchBar,
+          // { backgroundColor: theme === "dark" ? "#ffffff" : "#ffffff" },
+        ]}
       />
 
       {suggestions.length > 0 && (

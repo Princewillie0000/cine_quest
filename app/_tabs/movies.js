@@ -4,9 +4,12 @@ import Carousel from "../components/Carousel.js";
 import MovieCard from "../components/MovieCard.js";
 import { fetchPopularMovies, fetchRecommendMovies } from "../../utils/api.js";
 import { useRouter } from "expo-router";
+import { useTheme } from "../../context/ThemeContext.js";
 
 const Movies = () => {
   const router = useRouter();
+  const { theme } = useTheme();
+
   const [popularMovies, setPopularMovies] = useState([]);
   const [recommendedMovies, setRecommendedMovies] = useState([]);
 
@@ -33,8 +36,20 @@ const Movies = () => {
   );
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.sectionText}>Recommended Movies</Text>
+    <ScrollView
+      style={
+        ([styles.container],
+        { backgroundColor: theme === "dark" ? "#000000" : "#ffffff" })
+      }
+    >
+      <Text
+        style={[
+          styles.headerText,
+          { color: theme === "dark" ? "#ffffff" : "#000000" },
+        ]}
+      >
+        Recommended Movies
+      </Text>
       <Carousel
         data={recommendedMovies}
         renderItem={renderMovieItem}
@@ -42,7 +57,14 @@ const Movies = () => {
         contentContainerStyle={styles.contentContainer}
       />
 
-      <Text style={styles.sectionText}>Popular Movies</Text>
+      <Text
+        style={[
+          styles.sectionText,
+          { color: theme === "dark" ? "#ffffff" : "#000000" },
+        ]}
+      >
+        Popular Movies
+      </Text>
 
       <Carousel
         data={popularMovies}
@@ -69,18 +91,18 @@ const styles = StyleSheet.create({
   },
 
   sectionText: {
-    fontSize: 20,
-    fontWeight: 600,
+    fontSize: 22,
+    fontWeight: "bold",
     textAlign: "left",
-    marginBottom: 10,
+    marginBottom: 20,
     marginTop: 20,
   },
 
   headerText: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
     marginBottom: 16,
-    marginTop: 20,
+    marginTop: 50,
   },
 });
 

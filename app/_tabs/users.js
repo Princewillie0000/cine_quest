@@ -34,6 +34,7 @@ const UserScreen = () => {
 
   const handleSavePress = () => {
     updateUsername(newUsername);
+    setNewUsername(newUsername);
     setIsEditing(false);
   };
 
@@ -112,6 +113,7 @@ const UserScreen = () => {
       style={[
         styles.container,
         { backgroundColor: theme === "dark" ? "#000000" : "#ffffff" },
+        { color: theme === "dark" ? "#ffffff" : "#000000" },
       ]}
     >
       <View style={styles.topPadding} />
@@ -184,7 +186,7 @@ const styles = StyleSheet.create({
   },
 
   topPadding: {
-    padding: 40,
+    padding: 10,
   },
 
   header: {
@@ -199,7 +201,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   username: {
-    fontSize: 35,
+    fontSize: 25,
     fontWeight: "bold",
     marginRight: 8,
   },
@@ -243,7 +245,7 @@ const styles = StyleSheet.create({
 
   themeButton: {
     paddingVertical: 4,
-    paddingHorizontal: 8,
+    paddingHorizontal: 150,
     borderRadius: 4,
   },
 });

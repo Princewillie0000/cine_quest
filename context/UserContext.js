@@ -34,9 +34,14 @@ export const UserProvider = ({ children }) => {
   };
   return (
     <UserContext.Provider
-      value={
-        (username, updateUsername, watched, toWatch, setToWatch, setWatched)
-      }
+      value={{
+        username,
+        updateUsername,
+        watched,
+        toWatch,
+        setToWatch,
+        setWatched,
+      }}
     >
       {children}
     </UserContext.Provider>

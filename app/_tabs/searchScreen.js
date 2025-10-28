@@ -9,8 +9,10 @@ import {
   fetchSimilarShows,
 } from "../../utils/api";
 import { useLocalSearchParams, useRouter } from "expo-router";
+// import { useTheme } from "../../context/ThemeContext";
 
 const searchScreen = () => {
+  // const { theme } = useTheme();
   const { query } = useLocalSearchParams();
   const router = useRouter();
   const [searchResults, setSearchResults] = useState([]);

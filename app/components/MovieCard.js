@@ -1,12 +1,20 @@
 import React from "react";
 import { Card, Text } from "react-native-paper";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { useTheme } from "../../context/ThemeContext";
 
 const MovieCard = ({ movie, onPress }) => {
+  const { theme } = useTheme();
+
   return (
-    <TouchableOpacity onPress={onPress} style={styles.cardContainer}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <View style={styles.shadowContainer}>
-        <Card style={styles.card}>
+        <Card
+          style={[
+            styles.card,
+            { backgroundColor: theme === "dark" ? "#121212" : "#ffffff" },
+          ]}
+        >
           <Card.Cover
             source={{
               uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
@@ -14,10 +22,22 @@ const MovieCard = ({ movie, onPress }) => {
             style={styles.cover}
           />
           <Card.Content style={styles.content}>
-            <Text variant="titleMedium" style={styles.title}>
+            <Text
+              variant="titleMedium"
+              style={[
+                styles.title,
+                { color: theme === "dark" ? "#ffffff" : "#000000" },
+              ]}
+            >
               {movie.title || movie.name}
             </Text>
-            <Text variant="bodyMedium" style={styles.paragraph}>
+            <Text
+              variant="bodyMedium"
+              style={[
+                styles.paragraph,
+                { color: theme === "dark" ? "#bbbbbb" : "grey" },
+              ]}
+            >
               Rating: {movie.vote_average}
             </Text>
           </Card.Content>

@@ -18,6 +18,7 @@ const Home = () => {
   const [popularTVShows, setPopularTVShows] = useState([]);
   const [searchQuery, setSearchQuery] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const loadData = async () => {
@@ -70,8 +71,20 @@ const Home = () => {
     />
   );
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.headerText}> CINEQUEST</Text>
+    <ScrollView
+      style={[
+        styles.container,
+        { backgroundColor: theme === "dark" ? "#000000" : "#ffffff" },
+      ]}
+    >
+      <Text
+        style={[
+          styles.headerText,
+          { color: theme === "dark" ? "#ffffff" : "#000000" },
+        ]}
+      >
+        CINEQUEST
+      </Text>
       <SearchBar
         query={searchQuery}
         onQueryChange={handleQueryChange}
@@ -79,7 +92,14 @@ const Home = () => {
         suggestions={suggestions}
       />
 
-      <Text style={styles.sectionText}>Popular Movies</Text>
+      <Text
+        style={[
+          styles.sectionText,
+          // { color: theme === "dark" ? "#ffffff" : "#000000" },
+        ]}
+      >
+        Popular Movies
+      </Text>
       <Carousel
         data={popularMovies}
         renderItem={renderMovieItem}
@@ -87,13 +107,20 @@ const Home = () => {
         // contentContainerStyle={styles.contentContainer}
       />
 
-      <Text style={styles.sectionText}>Popular TV Shows</Text>
+      <Text
+        style={[
+          styles.sectionText,
+          { color: theme === "dark" ? "#ffffff" : "#000000" },
+        ]}
+      >
+        Popular TV Shows
+      </Text>
 
       <Carousel
         data={popularTVShows}
         renderItem={renderShowItem}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.contentContainer}
+        // contentContainerStyle={styles.contentContainer}
       />
     </ScrollView>
   );
@@ -115,17 +142,17 @@ const styles = StyleSheet.create({
 
   sectionText: {
     fontSize: 20,
-    fontWeight: 600,
+    fontWeight: "bold",
     textAlign: "left",
     marginBottom: 20,
-    marginTop: 20,
+    marginTop: 30,
   },
 
   headerText: {
-    fontSize: 24,
+    fontSize: 45,
     fontWeight: "bold",
-    marginBottom: 16,
-    marginTop: 20,
+    marginBottom: 10,
+    marginTop: 45,
   },
 });
 
